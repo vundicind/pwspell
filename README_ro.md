@@ -1,7 +1,7 @@
 Parallel Web Spell Checker
 ==========================
 
-`Parallel Web Spell Checker` este un crawler web care verifică ortografia paginilor vizitate.
+'Parallel Web Spell Checker' este un crawler web care verifică ortografia paginilor vizitate.
 Reprezintă un script shell și este bazat pe un exemplu de crawler web din manualul programului GNU parallel (https://www.gnu.org/software/parallel/man.html#example__breadth_first_parallel_web_crawler_mirrorer).
 
 Configurare și rulare
@@ -15,7 +15,7 @@ Pentru a rula script-ul este necesar ca următoarele programe să fie instalate 
     sudo apt-get install parallel
     sudo rm /etc/parallel/config
 ```
-* 'Lynx'; ; se instalează în Ubuntu folosind comanda
+* 'Lynx'; se instalează în Ubuntu folosind comanda
 
 ```
 sudo apt-get install lynx
@@ -25,7 +25,7 @@ sudo apt-get install lynx
 ```
     sudo apt-get install aspell   
 ```
-Nu uitați să instalți dicționarele corespunzătoare pentru aspell, de exemplu dicționarele românești (în Ubuntu) se instalează folosinf comanda
+Nu uitați să instalți dicționarele corespunzătoare pentru aspell, de exemplu dicționarele românești (în Ubuntu) se instalează folosind comanda
 ``` 
     sudo apt-get install aspell-ro
 ```

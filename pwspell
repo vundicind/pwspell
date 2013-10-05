@@ -1,0 +1,67 @@
+#!/bin/bash
+#
+# This script is a breadth first crawler that checks the spelling of a website.
+# It is based on the example of 'Breadth first parallel web crawler/mirrorer' from GNU parallel's man page 
+# (https://www.gnu.org/software/parallel/man.html#example__breadth_first_parallel_web_crawler_mirrorer).
+
+# E.g. http://gatt.org.yeslab.org/
+URL="$1"
+if [ -z $URL ]
+then
+    echo "Error: You must specify an URL"
+    echo "Usage: $0 <normalized URL>"
+    echo "  e.g. $0 http://gatt.org.yeslab.org/"
+    exit
+fi
+
+# E.g. 3
+DEPTH="$2"
+if [ -z $DEPTH ]
+then
+    DEPTH=3
+fi
+
+# E.g. ro_RO
+SLANG="$3"
+if [ -z $SLANG ]
+then
+    SLANG=ro_RO
+fi
+
+# Stay inside the start dir
+BASEURL=$(echo $URL | perl -pe 's:#.*::; s:(//.*/)[^/]*:$1:')
+URLLIST=$(mktemp urllist.XXXX)
+URLLIST2=$(mktemp urllist.XXXX)
+SEEN=$(mktemp seen.XXXX)
+
+# Crawl to get the URLs
+echo $URL > $URLLIST
+cp $URLLIST $SEEN
+
+# Output file for spelling mistakes
+SYNTAXERRORS=GRESELI.txt
+
+# Crawl loop
+for i in $(seq 1 $DEPTH)
+do
+    if [ ! -s $URLLIST ]
+    then
+        break
+    fi
+
+    cat $URLLIST | 
+        parallel "echo -n 'Crawling: {}' >&2 ; ( wget -q -O - {} | tee >(aspell -l $SLANG -H list | sed \"s/^/$(echo '$1' | sed -e 's/\\/\\\\/g' -e 's/\//\\\//g' -e 's/&/\\\&/g'): /g\" >> $SYNTAXERRORS) ) ; echo -e '\t[Done]' >&2" | 
+        lynx -listonly -dump -stderr -stdin | perl -ne 's/#.*//; s/\s+\d+.\s(\S+)$/$1/ and do { $seen{$1}++ or print }' | 
+        grep -F $BASEURL | grep -v -x -F -f $SEEN | tee -a $SEEN > $URLLIST2
+
+    mv $URLLIST2 $URLLIST
+done
+
+# Remove all temporary files
+rm -f $URLLIST $URLLIST2 $SEEN
+
+if [ $i != $DEPTH ]
+then
+    echo "The number of crawling loops where $i wich is less then the specified depth $DEPTH"
+    echo "Did you misspeled the website address? Are your sure you know which version to use: http://example.com/ or http://www.example.com/?"
+fi

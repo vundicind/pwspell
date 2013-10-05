@@ -44,5 +44,5 @@ Notes
 The script may take 3 arguments:
 
 1. `URL` - the start (seed) URL for the crawler;
-2. `DEPTH` - the maximum depth of crawling;
-3. `SLANG` - the language to use for spelling checking.
+2. `DEPTH` (optional) - the maximum depth of crawling;
+3. `SLANG` (optional) - the language to use for spelling checking.

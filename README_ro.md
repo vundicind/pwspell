@@ -1,46 +1,55 @@
 Parallel Web Spell Checker
 ==========================
 
-This script is a breadth first crawler that checks the spelling of a website. 
-It is based on the example of `Breadth first parallel web crawler/mirrorer` from GNU parallel's man page (https://www.gnu.org/software/parallel/man.html#example__breadth_first_parallel_web_crawler_mirrorer).
+`Parallel Web Spell Checker` este un crawler web care verifică ortografia paginilor vizitate.
+Reprezintă un script shell și este bazat pe un exemplu de crawler web din manualul programului GNU parallel (https://www.gnu.org/software/parallel/man.html#example__breadth_first_parallel_web_crawler_mirrorer).
 
-Quick start
------------
+Configurare și rulare
+---------------------
 
-You need the following programs to be installed on your GNU/Linux system in order to be possible to run the script:
-1. `GNU parallel`, install it on Ubuntu using 
+Pentru a rula script-ul este necesar ca următoarele programe să fie instalate în sistemul dumnevostră GNU/Linux:
+
+* 'GNU parallel'; se instalează în Ubuntu folosind comenzile
+
 ```
     sudo apt-get install parallel
     sudo rm /etc/parallel/config
 ```
-2. `Lynx`, install it on Ubuntu using
+* 'Lynx'; ; se instalează în Ubuntu folosind comanda
+
 ```
 sudo apt-get install lynx
 ```
-3. `Aspell`, install it on Ubuntu using
+* 'Aspell'; se instalează în Ubuntu folosind comanda
+
 ```
     sudo apt-get install aspell   
 ```
-Do not forget to install the language files for aspell, e.g. romanian language files are installed (in Ubuntu) using
+Nu uitați să instalți dicționarele corespunzătoare pentru aspell, de exemplu dicționarele românești (în Ubuntu) se instalează folosinf comanda
 ``` 
     sudo apt-get install aspell-ro
 ```
 
-Run the script
-```
-    ./pwspell http://gatt.org.yeslab.org/
-```
+### Configurare Aspell
 
-Notes
------
-
-Configurare Aspell
-------------------
-
-Implicit aspell utilizează doar ortografia cu `â/sunt` pentru a activea și cealaltă ortogarfie, cu `(î/sînt)`, cazul Republicii Moldova, este nevoie de a executa urmatoarea comandă (http://rospell.sourceforge.net/dictionary_ro.html#c4): 
+Implicit aspell utilizează doar ortografia cu 'â/sunt', pentru a activea și cealaltă ortogarfie, cu '(î/sînt)', utilizată pe larg în Republica Moldova, este nevoie de a executa următoarea comandă (http://rospell.sourceforge.net/dictionary_ro.html#c4): 
 
 ```
     echo "master ro-classic" > ~/.aspell.conf
 ```
 
+
+### Rularea script-ului
+```
+    ./pwspell http://gatt.org.yeslab.org/
+```
+
+Note
+-----
+
+Acest script primește 3 parametri:
+
+1. `URL` - URL-ul de la care crawler-ul va începe pargurgerea;
+2. `DEPTH` (opțional) - adîncimea maximală de parcurgere;
+3. `SLANG` (opțional) - limba folosita la verificarea ortografiei.
 

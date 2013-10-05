@@ -17,13 +17,11 @@ You need the following programs to be installed on your GNU/Linux system in orde
     sudo apt-get install parallel
     sudo rm /etc/parallel/config
 ```
-
 2. 'Lynx', install it on Ubuntu using
 
 ```
     sudo apt-get install lynx
 ```
-
 3. 'Aspell', install it on Ubuntu using
 
 ```
@@ -35,7 +33,7 @@ Do not forget to install the language files for aspell, e.g. romanian language f
     sudo apt-get install aspell-ro
 ```
 
-Run the script
+### Run the script
 
 ```
     ./pwspell http://gatt.org.yeslab.org/

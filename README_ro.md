@@ -32,7 +32,7 @@ Nu uitați să instalți dicționarele corespunzătoare pentru aspell, de exempl
 
 ### Configurare Aspell
 
-Implicit aspell utilizează doar ortografia cu 'â/sunt', pentru a activea și cealaltă ortogarfie, cu '(î/sînt)', utilizată pe larg în Republica Moldova, este nevoie de a executa următoarea comandă (http://rospell.sourceforge.net/dictionary_ro.html#c4): 
+Implicit aspell utilizează doar ortografia cu 'â/sunt', pentru a activea și cealaltă ortogarfie, cu '(î/sînt)', utilizată pe larg în Republica Moldova, este nevoie de a executa următoarea comandă (http://rospell.sourceforge.net/dictionary_ro.html#c4 ): 
 
 ```
     echo "master ro-classic" > ~/.aspell.conf

@@ -2,40 +2,40 @@ Parallel Web Spell Checker
 ==========================
 
 This script is a breadth first crawler that checks the spelling of a website. 
-It is based on the example of 'Breadth first parallel web crawler/mirrorer' from GNU parallel's man page (https://www.gnu.org/software/parallel/man.html#example__breadth_first_parallel_web_crawler_mirrorer).
+It is based on the example of [Breadth first parallel web crawler/mirrorer](https://www.gnu.org/software/parallel/man.html#example__breadth_first_parallel_web_crawler_mirrorer) from GNU parallel's man page.
 
-Although 'pwspell' can do what is written above it must be seen not as a functional web crawler, but as a 'proof of concept' and an shell script exercise.
+Although **pwspell** can do what is written above it must be seen not as a functional web crawler, but as a **proof of concept** and an shell script exercise.
 
 Quick start
 -----------
 
-You need the following programs to be installed on your GNU/Linux system in order to be possible to run the script:
+You need the following programs to be installed on your GNU/Linux system in order to run the script:
 
-* 'GNU parallel', install it on Ubuntu using
+* **GNU parallel**, install it on Ubuntu using
 
+```sh
+sudo apt-get install parallel
+sudo rm /etc/parallel/config
 ```
-    sudo apt-get install parallel
-    sudo rm /etc/parallel/config
-```
-* 'Lynx', install it on Ubuntu using
+* **Lynx**, install it on Ubuntu using
 
+```sh
+sudo apt-get install lynx
 ```
-    sudo apt-get install lynx
-```
-* 'Aspell', install it on Ubuntu using
+* **Aspell**, install it on Ubuntu using
 
-```
-    sudo apt-get install aspell   
+```sh
+sudo apt-get install aspell   
 ```
 Do not forget to install the language files for aspell, e.g. romanian language files are installed (in Ubuntu) using
-``` 
-    sudo apt-get install aspell-ro
+```sh 
+sudo apt-get install aspell-ro
 ```
 
 ### Run the script
 
-```
-    ./pwspell http://gatt.org.yeslab.org/
+```sh
+./pwspell http://gatt.org.yeslab.org/
 ```
 
 Notes
